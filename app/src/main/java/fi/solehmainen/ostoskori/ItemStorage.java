@@ -41,7 +41,7 @@ public class ItemStorage {
             }
             i2++;
         }
-        items.remove(id);
+        items.remove(i2);
     }
 
 }
