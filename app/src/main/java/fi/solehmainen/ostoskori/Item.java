@@ -14,7 +14,7 @@ public class Item implements Serializable {
         this.image = R.drawable.baseline_delete_forever_24;
         this.image2 = R.drawable.baseline_edit_24;
         this.id = counter++;
-
+        System.out.println(this.id);
     }
 
     public String getPurchase() {
