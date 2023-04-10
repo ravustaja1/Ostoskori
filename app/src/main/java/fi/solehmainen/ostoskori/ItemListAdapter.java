@@ -2,6 +2,7 @@ package fi.solehmainen.ostoskori;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,15 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemViewHolder> {
         holder.txtField.setText(items.get(position).getPurchase());
         holder.delete.setImageResource(items.get(position).getImage2());
         holder.edit.setImageResource(items.get(position).getImage());
+
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pos = holder.getAdapterPosition();
+                ItemStorage.getInstance().removeItem(items.get(pos).getId());
+                notifyItemRemoved(pos);
+            }
+        });
     }
 
     @Override

@@ -33,5 +33,15 @@ public class ItemStorage {
         System.out.println(item.getId());
     }
 
+    public void removeItem(int id) {
+        int i2 = 0;
+        for (Item i: items) {
+            if (i.getId() == id) {
+                break;
+            }
+            i2++;
+        }
+        items.remove(id);
+    }
 
 }

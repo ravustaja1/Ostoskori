@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ItemViewHolder extends RecyclerView.ViewHolder {
     ImageView delete, edit;
 
+
     TextView txtField;
     public ItemViewHolder(@NonNull View itemView) {
         super(itemView);

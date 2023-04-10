@@ -25,9 +25,11 @@ public class Item implements Serializable {
         return image;
     }
 
+
     public int getId() {
         return id;
     }
+
 
     public int getImage2() {
         return image2;
