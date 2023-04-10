@@ -1,6 +1,8 @@
 package fi.solehmainen.ostoskori;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ItemStorage {
     private static ItemStorage itemStorage = null;
@@ -20,12 +22,16 @@ public class ItemStorage {
     }
 
     public ArrayList<Item> getItems() {
+
         return items;
     }
 
     public void addItem(Item item){
         items.add(item);
-        System.out.println(item);
+        System.out.println(item.getPurchase());
         System.out.println(items);
+        System.out.println(item.getId());
     }
+
+
 }

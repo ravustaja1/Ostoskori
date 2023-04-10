@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ItemViewHolder extends RecyclerView.ViewHolder {
     ImageView delete, edit;
 
-    TextView tvItem;
+    TextView txtField;
     public ItemViewHolder(@NonNull View itemView) {
         super(itemView);
         delete = itemView.findViewById(R.id.ivDelete);
         edit = itemView.findViewById(R.id.ivDelete);
-        tvItem = itemView.findViewById(R.id.tvItem);
+        txtField = itemView.findViewById(R.id.tvItem);
     }
 }

@@ -29,13 +29,13 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        holder.tvItem.setText(items.get(position).getPurchase());
-        holder.edit.setImageResource(items.get(position).getImage2());
-        holder.delete.setImageResource(items.get(position).getImage());
+        holder.txtField.setText(items.get(position).getPurchase());
+        holder.delete.setImageResource(items.get(position).getImage2());
+        holder.edit.setImageResource(items.get(position).getImage());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return items.size();
     }
 }
