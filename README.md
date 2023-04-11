@@ -1,3 +1,3 @@
 # Ostoskori
 
-https://youtu.be/9JxXx_8zNSE
+https://youtu.be/EL9AotEZ6Kw
