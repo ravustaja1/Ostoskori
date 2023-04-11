@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import kotlinx.coroutines.channels.ProduceKt;
+
 public class MainActivity extends AppCompatActivity {
     private Context context;
     private ItemStorage storage;
@@ -37,12 +39,15 @@ public class MainActivity extends AppCompatActivity {
 
         SortByAlph = findViewById(R.id.btnOrderAlph);
         SortById = findViewById(R.id.btnOrderAlph);
-
+        ItemListAdapter adapter = new ItemListAdapter(getApplicationContext(), storage.getItems());
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
         SortByAlph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Collections.sort(items, Comparator.comparing(Item::getPurchase).thenComparing(Item::getPurchase));
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -50,11 +55,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Collections.sort(items, Comparator.comparing(Item::getId).thenComparing(Item::getId));
+                adapter.notifyDataSetChanged();
             }
         });
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new ItemListAdapter(getApplicationContext(), storage.getItems()));
+
+
     }
 
     public void switchToAddItem(View view) {
