@@ -44,4 +44,5 @@ public class ItemStorage {
         items.remove(i2);
     }
 
+    public Item getItemById(int id) { return items.get(id); }
 }

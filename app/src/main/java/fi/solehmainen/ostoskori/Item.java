@@ -25,6 +25,9 @@ public class Item implements Serializable {
         return image;
     }
 
+    public void setPurchase(String purchase) {
+        this.purchase = purchase;
+    }
 
     public int getId() {
         return id;

@@ -31,8 +31,9 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         holder.txtField.setText(items.get(position).getPurchase());
-        holder.delete.setImageResource(items.get(position).getImage2());
-        holder.edit.setImageResource(items.get(position).getImage());
+        holder.delete.setImageResource(items.get(position).getImage());
+        holder.edit.setImageResource(items.get(position).getImage2());
+        holder.editText.setText(items.get(position).getPurchase());
 
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +41,24 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemViewHolder> {
                 int pos = holder.getAdapterPosition();
                 ItemStorage.getInstance().removeItem(items.get(pos).getId());
                 notifyItemRemoved(pos);
+            }
+        });
+
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pos = holder.getAdapterPosition();
+
+                if(holder.editText.getVisibility() == View.VISIBLE) {
+                    Item item = ItemStorage.getInstance().getItemById(pos);
+                    item.setPurchase(holder.editText.getText().toString());
+                    holder.editText.setVisibility(View.GONE);
+                    notifyDataSetChanged();
+                }
+                else {
+                    holder.editText.setVisibility(View.VISIBLE);
+                }
+
             }
         });
     }

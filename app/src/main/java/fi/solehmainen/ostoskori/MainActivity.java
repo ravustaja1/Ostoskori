@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private Context context;
     private ItemStorage storage;
     private RecyclerView recyclerView;
+    private ArrayList<Item> items = new ArrayList<>();
+    private Button SortByAlph, SortById;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +30,28 @@ public class MainActivity extends AppCompatActivity {
         context = MainActivity.this;
         //i.getItems();
         storage = ItemStorage.getInstance();
+
         recyclerView = findViewById(R.id.rvItemList);
 
+        items = ItemStorage.getInstance().getItems();
+
+        SortByAlph = findViewById(R.id.btnOrderAlph);
+        SortById = findViewById(R.id.btnOrderAlph);
+
+
+        SortByAlph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Collections.sort(items, Comparator.comparing(Item::getPurchase).thenComparing(Item::getPurchase));
+            }
+        });
+
+        SortById.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Collections.sort(items, Comparator.comparing(Item::getId).thenComparing(Item::getId));
+            }
+        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ItemListAdapter(getApplicationContext(), storage.getItems()));
@@ -38,5 +61,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddItemActivity.class);
         startActivity(intent);
     }
+
+    public ArrayList<Item> switchByAlphabetical(View view) {
+        ArrayList<Item> items = new ArrayList<>();
+        items = ItemStorage.getInstance().getItems();
+        Collections.sort(items, Comparator.comparing(Item::getPurchase).thenComparing(Item::getPurchase));
+
+        return items;
+    }
+
 
 }
