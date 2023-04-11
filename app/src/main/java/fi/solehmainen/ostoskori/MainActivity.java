@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<Item> items = new ArrayList<>();
     private Button SortByAlph, SortById;
+    private ItemListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,16 +40,18 @@ public class MainActivity extends AppCompatActivity {
         items = ItemStorage.getInstance().getItems();
 
         SortByAlph = findViewById(R.id.btnOrderAlph);
-        SortById = findViewById(R.id.btnOrderAlph);
+        SortById = findViewById(R.id.btnOrderById);
         ItemListAdapter adapter = new ItemListAdapter(getApplicationContext(), storage.getItems());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
 
         SortByAlph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Collections.sort(items, Comparator.comparing(Item::getPurchase).thenComparing(Item::getPurchase));
                 adapter.notifyDataSetChanged();
+
             }
         });
 
@@ -68,12 +72,20 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public ArrayList<Item> switchByAlphabetical(View view) {
+    public void switchByAlphabetical(View view) {
         ArrayList<Item> items = new ArrayList<>();
         items = ItemStorage.getInstance().getItems();
         Collections.sort(items, Comparator.comparing(Item::getPurchase).thenComparing(Item::getPurchase));
+        adapter.notifyDataSetChanged();
 
-        return items;
+    }
+
+    public void switchByTime(View view) {
+        ArrayList<Item> items = new ArrayList<>();
+        items = ItemStorage.getInstance().getItems();
+        Collections.sort(items, Comparator.comparing(Item::getId).thenComparing(Item::getId));
+        adapter.notifyDataSetChanged();
+
     }
 
 
